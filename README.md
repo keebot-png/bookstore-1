@@ -27,7 +27,7 @@ To get a local copy up and running follow these simple steps.
 
 ## Install
 
-- To clone the project on your machine: Type https://github.com/Jaymelfah/Bookstore.git.
+- To clone the project on your machine: Type: git clone https://github.com/keebot-png/bookstore-1.git
 - Run npm install in your terminal
 - To run the project on live server: npm run start
 
