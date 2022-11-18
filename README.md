@@ -6,9 +6,9 @@ In this project I lay the foundations for a Bookstore website. The React part of
 
 - React Router
 
-## Live Demo (if available)
+## Live link
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://polite-capybara-aebb31.netlify.app/)
 
 
 ## Getting Started
