@@ -7,8 +7,8 @@ const LOAD = 'bookstore-1/books/LOAD';
 // Reducer
 export const reducer = (state = [], action = {}) => {
   switch (action.type) {
-    case ADD: 
-    return [...state, {
+    case ADD:
+      return [...state, {
         id: action.id,
         title: action.title,
         author: action.author,
@@ -18,8 +18,8 @@ export const reducer = (state = [], action = {}) => {
       return state;
     }
 
-    case DELETE: 
-    return [
+    case DELETE:
+      return [
         ...state
           .filter((book) => (book.id !== book)),
       ];
