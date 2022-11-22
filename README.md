@@ -8,9 +8,6 @@ In this project I lay the foundations for a Bookstore website. The React part of
 
 ## Live link
 
-[Book Store Website](https://polite-capybara-aebb31.netlify.app/)
-
-
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
