@@ -33,8 +33,8 @@ const AddBook = () => {
   };
 
   const firstInput = () => {
-    if((titleInput === '') || (categoryInput === '') || (authorInput === '')){
-      alert('All fields are required');
+    if ((titleInput === '') || (categoryInput === '') || (authorInput === '')) {
+      alert('All fields are required'); // eslint-disable-line no-alert
     } else {
       dispatch(postBook(items));
       setTitleInput('');
@@ -74,12 +74,13 @@ const AddBook = () => {
           placeholder="Category"
           required
         />
-        <button onClick={() => {
-          firstInput();
-        }} 
-        type="button" 
-        name="add" 
-        id="add"
+        <button
+          onClick={() => {
+            firstInput();
+          }}
+          type="button"
+          name="add"
+          id="add"
         >
           Add Book
         </button>

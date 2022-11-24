@@ -44,7 +44,6 @@ export const updateBook = (items) => ({ type: UPDATE, payload: { items } });
 
 // Thunks
 
-
 export const fetchBooks = () => async (dispatch) => fetch(APILINK)
   .then((res) => res.json())
   .then((data) => {
