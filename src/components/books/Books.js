@@ -15,30 +15,32 @@ const Books = (props) => {
             <h1>{title}</h1>
             <p className="author">{author}</p>
             <div className="button-options">
-              <button 
-              type="button" 
-              id="comment" 
-              name="comment" 
-              className="action"
-              >Comments
-              </button>
-              <button 
-              type="button" 
-              id="remove" 
-              name="remove" 
-              className="action"
-              onClick={() => {
-                dispatch(deleteBook(id));
-              }}
+              <button
+                type="button"
+                id="comment"
+                name="comment"
+                className="action"
               >
-              Remove
+                Comments
               </button>
-              <button 
-              type="button" 
-              id="edit" 
-              name="edit" 
-              className="action"
-              >Edit
+              <button
+                type="button"
+                id="remove"
+                name="remove"
+                className="action"
+                onClick={() => {
+                  dispatch(deleteBook(id));
+                }}
+              >
+                Remove
+              </button>
+              <button
+                type="button"
+                id="edit"
+                name="edit"
+                className="action"
+              >
+                Edit
               </button>
             </div>
           </div>

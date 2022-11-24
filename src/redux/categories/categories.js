@@ -8,9 +8,8 @@ export const categoriesReducer = (state = [], action = {}) => {
       return 'Under Construction';
     }
 
-    default: 
+    default:
       return state;
-    
   }
 };
 

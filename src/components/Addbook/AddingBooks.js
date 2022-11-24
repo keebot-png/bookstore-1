@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AddBooks.css';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { createBook } from '../../redux/books/books';
-
-
 
 const AddBook = () => {
   const [titleInput, setTitleInput] = useState('');
@@ -18,10 +15,10 @@ const AddBook = () => {
 
   const authorSet = (e) => {
     setAuthorInput(e.target.value);
-  }
+  };
 
   const dispatch = useDispatch();
-  
+
   const id = uuidv4();
 
   return (

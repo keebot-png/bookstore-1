@@ -6,23 +6,23 @@ const LOAD = 'bookstore-1/books/LOAD';
 
 const defaultState = [
   {
-  id: 1,
-  author: "Suzanne Collins",
-  title: "The Hunger Games"
+    id: 1,
+    author: 'Suzanne Collins',
+    title: 'The Hunger Games',
   },
 
   {
-  id: 2,
-  author: "Leo Toystoy",
-  title: "Anna Karenina"
+    id: 2,
+    author: 'Leo Toystoy',
+    title: 'Anna Karenina',
   },
 
   {
-  id: 3,
-  author: "Franck Herbert",
-  title: "Dune"
-  }
-]
+    id: 3,
+    author: 'Franck Herbert',
+    title: 'Dune',
+  },
+];
 
 // Reducer
 export const booksReducer = (state = defaultState, action = {}) => {
