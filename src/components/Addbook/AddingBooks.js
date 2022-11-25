@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AddBooks.css';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addBook, postBook } from '../../redux/books/books';
+import { addBook } from '../../redux/books/books';
 
 const AddBook = () => {
   const [titleInput, setTitleInput] = useState('');
@@ -26,14 +26,15 @@ const AddBook = () => {
   };
 
   const handleSubmit = (e) => {
-      const items = {
+    e.preventDefault();
+    const items = {
       item_id: uuidv4(),
       title: titleInput,
       author: authorInput,
       category: categoryInput,
     };
     dispatch(addBook(items));
-  }
+  };
 
   return (
     <section className="addingBook">

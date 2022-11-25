@@ -10,7 +10,7 @@ const Books = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(removeBook(id));
-  }
+  };
   return (
     <section className="book-container">
       <ul className="book-list">

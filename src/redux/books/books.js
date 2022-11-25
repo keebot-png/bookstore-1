@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addAPI, fetchAPI, removeAPI } from "../../components/API/API";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { addAPI, fetchAPI, removeAPI } from '../../components/API/API';
 
 // Actions
 const ADD = 'bookstore-1/books/ADD';
