@@ -5,7 +5,7 @@ import Books from '../books/Books';
 import { fetchBooks } from '../../redux/books/books';
 
 const BookContainer = () => {
-  const books = useSelector((state) => state.booksReducer);
+  const books = useSelector((state) => state.handleBook.entities);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchBooks());

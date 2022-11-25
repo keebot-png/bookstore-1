@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AddBooks.css';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { postBook } from '../../redux/books/books';
+import { addBook, postBook } from '../../redux/books/books';
 
 const AddBook = () => {
   const [titleInput, setTitleInput] = useState('');
@@ -12,13 +12,6 @@ const AddBook = () => {
   const [categoryInput, setCategoryInput] = useState('');
 
   const dispatch = useDispatch();
-
-  const items = {
-    item_id: uuidv4(),
-    title: titleInput,
-    author: authorInput,
-    category: categoryInput,
-  };
 
   const titleSet = (e) => {
     setTitleInput(e.target.value);
@@ -32,16 +25,15 @@ const AddBook = () => {
     setAuthorInput(e.target.value);
   };
 
-  const firstInput = () => {
-    if ((titleInput === '') || (categoryInput === '') || (authorInput === '')) {
-      alert('All fields are required'); // eslint-disable-line no-alert
-    } else {
-      dispatch(postBook(items));
-      setTitleInput('');
-      setAuthorInput('');
-      setCategoryInput('');
-    }
-  };
+  const handleSubmit = (e) => {
+      const items = {
+      item_id: uuidv4(),
+      title: titleInput,
+      author: authorInput,
+      category: categoryInput,
+    };
+    dispatch(addBook(items));
+  }
 
   return (
     <section className="addingBook">
@@ -75,10 +67,8 @@ const AddBook = () => {
           required
         />
         <button
-          onClick={() => {
-            firstInput();
-          }}
-          type="button"
+          onClick={handleSubmit}
+          type="submit"
           name="add"
           id="add"
         >

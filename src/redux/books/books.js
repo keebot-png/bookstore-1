@@ -1,75 +1,69 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { addAPI, fetchAPI, removeAPI } from "../../components/API/API";
+
 // Actions
 const ADD = 'bookstore-1/books/ADD';
 const UPDATE = 'bookstore-1/books/UPDATE';
 const DELETE = 'bookstore-1/books/DELETE';
 
-const defaultState = [];
+const fetchBooks = createAsyncThunk(
+  UPDATE,
+  async () => {
+    const response = await fetchAPI();
+    return response;
+  },
+);
 
-const APILINK = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/01GJNSV0FWZ2CG4E22V5TJHWHE/books';
+const addBook = createAsyncThunk(
+  ADD,
+  async (Obj) => {
+    await addAPI(Obj);
+    return Obj;
+  },
+);
 
-// Reducer
-export const booksReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case ADD:
-      return [...state, {
-        id: action.id,
-        title: action.title,
-        author: action.author,
-      }];
+const removeBook = createAsyncThunk(
+  DELETE,
+  async (id) => {
+    await removeAPI(id);
+    return id;
+  },
+);
 
-    case UPDATE: {
-      return [...state, ...action.payload.items];
-    }
-
-    case DELETE:
-      return state.filter((book) => (book.id !== action.id));
-
-    default: {
-      return state;
-    }
-  }
+const initialState = {
+  status: null,
+  entities: [],
 };
 
-// Action Creators
-export const createBook = (items) => ({
-  type: ADD,
-  id: items.id,
-  title: items.title,
-  author: items.author,
+const handleBookSlice = createSlice({
+  name: 'handleBook',
+  initialState,
+  extraReducers: (builder) => {
+    builder.addCase(fetchBooks.fulfilled, (state, action) => {
+      const newBookList = [];
+      Object.entries(action.payload).forEach((item) => {
+        newBookList.push({
+          id: item[0],
+          title: item[1][0].title,
+          author: item[1][0].author,
+        });
+      });
+      // eslint-disable-next-line no-param-reassign
+      state.entities = newBookList;
+    });
+    builder.addCase(addBook.fulfilled, (state, action) => {
+      state.entities.push({
+        id: action.payload.item_id,
+        title: action.payload.title,
+        author: action.payload.author,
+      });
+    });
+    builder.addCase(removeBook.fulfilled, (state, action) => {
+      // eslint-disable-next-line no-param-reassign
+      state.entities = state.entities.filter((book) => book.id !== action.payload);
+    });
+  },
 });
 
-export const deleteBook = (id) => ({ type: DELETE, id });
-
-export const updateBook = (items) => ({ type: UPDATE, payload: { items } });
-
-// Thunks
-
-export const fetchBooks = () => async (dispatch) => fetch(APILINK)
-  .then((res) => res.json())
-  .then((data) => {
-    const dataInput = [];
-    Object.values(data).forEach((value) => {
-      dataInput.push(value[0]);
-    });
-    Object.keys(data).forEach((key, i) => {
-      dataInput[i].id = key;
-    });
-    dispatch(updateBook(dataInput));
-  });
-
-export const postBook = (items) => async (dispatch) => {
-  fetch(APILINK, {
-    method: 'POST',
-    body: JSON.stringify(items),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  }).then(() => dispatch(createBook(items)));
-};
-
-export const deleteBookItem = (id) => async (dispatch) => {
-  fetch(`${APILINK}/${id}`, {
-    method: 'DELETE',
-    body: JSON.stringify(id),
-  }).then(() => dispatch(deleteBook(id)));
-};
+export default handleBookSlice.reducer;
+export { fetchBooks, addBook, removeBook };
