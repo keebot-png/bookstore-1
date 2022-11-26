@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './category.css';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkStatus } from '../../redux/categories/categories';
 
@@ -14,8 +13,8 @@ function Categories() {
     setMsg(msg);
   };
   return (
-    <div className='status-log'>
-      <button id='updated-log' onClick={handleSubmit} type="submit">Check Status</button>
+    <div className="status-log">
+      <button id="updated-log" onClick={handleSubmit} type="submit">Check Status</button>
       <p>{msgPlaceholder}</p>
     </div>
   );
