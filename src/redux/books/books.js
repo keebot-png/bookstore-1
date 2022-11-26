@@ -46,6 +46,7 @@ const handleBookSlice = createSlice({
           id: item[0],
           title: item[1][0].title,
           author: item[1][0].author,
+          category: item[1][0].category,
         });
       });
       // eslint-disable-next-line no-param-reassign
@@ -56,6 +57,7 @@ const handleBookSlice = createSlice({
         id: action.payload.item_id,
         title: action.payload.title,
         author: action.payload.author,
+        category: action.payload.category,
       });
     });
     builder.addCase(removeBook.fulfilled, (state, action) => {
